@@ -49,6 +49,7 @@ namespace Agenda.ApplicationCore.Services
         public void Remove(Contato entity)
         {
             _unitOfWork.Contatos.Remove(entity);
+            _unitOfWork.Commit();
         }
 
         public void RemoveRange(IEnumerable<Contato> entities)

@@ -14,7 +14,7 @@ namespace Agenda.InfraStructure.Repositories
 
         public Contexto InfraContext
         {
-            get { return Context as Contexto; }
+            get { return _contexto as Contexto; }
         }
     }
 }

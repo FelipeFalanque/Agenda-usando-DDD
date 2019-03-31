@@ -7,34 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Agenda.ApplicationCore.Entities;
 using Agenda.InfraStructure.Data;
+using Agenda.ApplicationCore.Interfaces.Services;
 
 namespace Agenda.WebSite.Controllers
 {
     public class ContatosController : Controller
     {
-        private readonly Contexto _context;
+        private readonly IContatoService _contatoService;
 
-        public ContatosController(Contexto context)
+        public ContatosController(IContatoService contatoService)
         {
-            _context = context;
+            _contatoService = contatoService;
         }
 
         // GET: Contatos
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Contatos.ToListAsync());
+            return View(_contatoService.GetAll());
         }
 
         // GET: Contatos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var contato = await _context.Contatos
-                .SingleOrDefaultAsync(m => m.ContatoId == id);
+            var contato = _contatoService.Get(id);
             if (contato == null)
             {
                 return NotFound();
@@ -54,26 +54,25 @@ namespace Agenda.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContatoId,Nome,Telefone")] Contato contato)
+        public IActionResult Create([Bind("ContatoId,Nome,Telefone")] Contato contato)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contato);
-                await _context.SaveChangesAsync();
+                _contatoService.Add(contato);
                 return RedirectToAction(nameof(Index));
             }
             return View(contato);
         }
 
         // GET: Contatos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var contato = await _context.Contatos.SingleOrDefaultAsync(m => m.ContatoId == id);
+            var contato = _contatoService.Get(id);
             if (contato == null)
             {
                 return NotFound();
@@ -86,7 +85,7 @@ namespace Agenda.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContatoId,Nome,Telefone")] Contato contato)
+        public IActionResult Edit(int id, [Bind("ContatoId,Nome,Telefone")] Contato contato)
         {
             if (id != contato.ContatoId)
             {
@@ -97,8 +96,7 @@ namespace Agenda.WebSite.Controllers
             {
                 try
                 {
-                    _context.Update(contato);
-                    await _context.SaveChangesAsync();
+                    _contatoService.Update(contato);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,15 +115,14 @@ namespace Agenda.WebSite.Controllers
         }
 
         // GET: Contatos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var contato = await _context.Contatos
-                .SingleOrDefaultAsync(m => m.ContatoId == id);
+            var contato = _contatoService.Get(id);
             if (contato == null)
             {
                 return NotFound();
@@ -137,17 +134,16 @@ namespace Agenda.WebSite.Controllers
         // POST: Contatos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var contato = await _context.Contatos.SingleOrDefaultAsync(m => m.ContatoId == id);
-            _context.Contatos.Remove(contato);
-            await _context.SaveChangesAsync();
+            var contato = _contatoService.Get(id);
+            _contatoService.Remove(contato);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContatoExists(int id)
         {
-            return _context.Contatos.Any(e => e.ContatoId == id);
+            return _contatoService.Get(id) != null;
         }
     }
 }

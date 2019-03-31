@@ -1,4 +1,5 @@
 ﻿using Agenda.ApplicationCore.Interfaces.Repositories;
+using Agenda.InfraStructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace Agenda.InfraStructure.Repositories
 {
     public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext Context;
+        protected readonly Contexto _contexto;
         internal DbSet<TEntity> _dbSet;
 
-        public EFRepository(DbContext context)
+        public EFRepository(Contexto context)
         {
-            Context = context;
+            _contexto = context;
             _dbSet = context.Set<TEntity>();
         }
 
@@ -32,7 +33,7 @@ namespace Agenda.InfraStructure.Repositories
         public void Update(TEntity entity)
         {
             _dbSet.Attach(entity);
-            Context.Entry(entity).State = EntityState.Modified;
+            _contexto.Entry(entity).State = EntityState.Modified;
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)

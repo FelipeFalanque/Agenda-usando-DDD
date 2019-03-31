@@ -32,9 +32,12 @@ namespace Agenda.WebSite
             services.AddDbContext<Contexto>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
 
-            //services.AddScoped<IContatoRepository, ContatoRepository>();
-            //services.AddScoped<IContatoService, ContatoService>();
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IContatoRepository, ContatoRepository>();
+            
+            services.AddScoped<IContatoService, ContatoService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
