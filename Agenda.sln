@@ -9,11 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Domain", "02 - Domain"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - InfraStructure", "03 - InfraStructure", "{FFE0175F-4474-4393-A77C-AFB41623DC5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.WebSite", "src\Agenda.WebSite\Agenda.WebSite.csproj", "{BE4B0ADC-6FBC-4464-AFC3-0A922277766D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.WebSite", "src\Agenda.WebSite\Agenda.WebSite.csproj", "{BE4B0ADC-6FBC-4464-AFC3-0A922277766D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.ApplicationCore", "src\Agenda.ApplicationCore\Agenda.ApplicationCore.csproj", "{FBB0355C-3DE8-43BE-85DD-DB651EC0422D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.ApplicationCore", "src\Agenda.ApplicationCore\Agenda.ApplicationCore.csproj", "{FBB0355C-3DE8-43BE-85DD-DB651EC0422D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.InfraStructure", "src\Agenda.InfraStructure\Agenda.InfraStructure.csproj", "{F5BFD332-CFE0-4921-B7A5-9A7DC56510B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.InfraStructure", "src\Agenda.InfraStructure\Agenda.InfraStructure.csproj", "{F5BFD332-CFE0-4921-B7A5-9A7DC56510B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{F6226B77-CCC6-4564-8923-E080B5D07523}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F5BFD332-CFE0-4921-B7A5-9A7DC56510B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5BFD332-CFE0-4921-B7A5-9A7DC56510B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5BFD332-CFE0-4921-B7A5-9A7DC56510B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6226B77-CCC6-4564-8923-E080B5D07523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6226B77-CCC6-4564-8923-E080B5D07523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6226B77-CCC6-4564-8923-E080B5D07523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6226B77-CCC6-4564-8923-E080B5D07523}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

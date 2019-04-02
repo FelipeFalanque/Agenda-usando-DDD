@@ -32,10 +32,10 @@ namespace Agenda.WebSite
             services.AddDbContext<Contexto>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
 
-            services.AddScoped<IContatoRepository, ContatoRepository>();
-            
-            services.AddScoped<IContatoService, ContatoService>();
+            //services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
 
+            services.AddScoped<IContatoRepository, ContatoRepository>();
+            services.AddScoped<IContatoService, ContatoService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         }
